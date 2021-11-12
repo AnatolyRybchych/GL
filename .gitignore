@@ -1,0 +1,5 @@
+#files for debug
+/static/*.exe
+/main.cpp
+/MakeRun.mk
+/static/shaders/*
