@@ -75,7 +75,13 @@ namespace GL
 		{
 
 			if (!HdandleIsShaderOkCondition(&_errors,shader))	return;
-		
+
+			if(_isComputeInit)
+			{
+				_errors.push_back("Error: shader program already contains compute shader\n");
+				return;
+			}
+
 			switch (shader->GetType())
 			{
 			case FRAGMENT:
@@ -95,6 +101,12 @@ namespace GL
 				else _vertex = *shader;
 
 				_isVertexInit = true;
+				return;
+			case COMPUTE:
+				if (_isVertexInit || _isFragmentInit || _isGeometryInit)	_errors.push_back("Error: shader program is already init as render shader program\n");
+				else _compute = *shader;
+
+				_isComputeInit = true;
 				return;
 			default:
 				HandleShaderIncorrectType(&_errors, shader);
@@ -136,6 +148,7 @@ namespace GL
 			if (_isVertexInit)	glAttachShader(_id, _vertex.GetId());
 			if (_isGeometryInit)  glAttachShader(_id, _geometry.GetId());
 			if (_isFragmentInit)  glAttachShader(_id, _fragment.GetId());
+			if (_isComputeInit)  glAttachShader(_id, _compute.GetId());
 
 			glLinkProgram(_id);
 			if (HandleIsShaderProgramBuildError(&_errors, this))

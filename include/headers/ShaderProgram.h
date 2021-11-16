@@ -36,6 +36,8 @@ namespace GL
 			bool _isVertexInit = false;
 			bool _isFragmentInit = false;
 			bool _isGeometryInit = false;
+			bool _isComputeInit = false;
+			GL::Shaders::Shader _compute;
 			GL::Shaders::Shader _vertex;
 			GL::Shaders::Shader _geometry;
 			GL::Shaders::Shader _fragment;
