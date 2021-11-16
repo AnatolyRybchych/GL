@@ -23,6 +23,7 @@ namespace GL
 
 		//write view into device context
 		void Redraw();
+		void SetViewPort(int x, int y, int cx, int cy);
 		void ChangeDC(HDC newDc);
 		//calls changeProc with gl context
 		void ChangeContextEnvironment(std::function<void()> changeProc);

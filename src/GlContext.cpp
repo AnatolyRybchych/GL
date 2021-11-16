@@ -31,6 +31,12 @@ namespace GL
 		changeProc();
 	}
 
+	void GlContext::SetViewPort(int x, int y, int cx, int cy)
+	{
+		MakeCurrent();
+		glViewport(x,y,cx,cy);
+	}
+
 	void GlContext::Redraw()
 	{
 		MakeCurrent();
