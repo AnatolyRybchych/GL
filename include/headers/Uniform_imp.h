@@ -75,15 +75,17 @@ protected:\
 	Mat##volume##x##volume##typePrefix value = {0};\
 }
 
-#define GenMatrixSetX(type,typePrefix,volumeX)\
-GenMatrix(type,typePrefix,volumeX,2);\
-GenMatrix(type,typePrefix,volumeX,3);\
-GenMatrix(type,typePrefix,volumeX,4)
+#define GenMatrixSet(type,typePrefix)\
+GenMatrix(type,typePrefix,2,2);\
+GenMatrix(type,typePrefix,2,3);\
+GenMatrix(type,typePrefix,2,4);\
+GenMatrix(type,typePrefix,3,2);\
+GenMatrix(type,typePrefix,3,3);\
+GenMatrix(type,typePrefix,3,4);\
+GenMatrix(type,typePrefix,4,2);\
+GenMatrix(type,typePrefix,4,3);\
+GenMatrix(type,typePrefix,4,4)
 
-#define GenMatrixSetXY(type,typePrefix)\
-GenMatrixSetX(type,typePrefix,2);\
-GenMatrixSetX(type,typePrefix,3);\
-GenMatrixSetX(type,typePrefix,4)
 
 #define GenMatrixUniformSet(type, typePrefix)\
 GenMatrixUniforms(type, typePrefix,2,3);\
@@ -96,8 +98,7 @@ GenSquareMatrixUniforms(type,typePrefix,2);\
 GenSquareMatrixUniforms(type,typePrefix,3);\
 GenSquareMatrixUniforms(type,typePrefix,4)
 
-
-#define GenMatrixesForType(type,typePrefix) GenMatrixSetXY(type,typePrefix)
+#define GenMatrixesForType(type,typePrefix) GenMatrixSet(type,typePrefix)
 #define GenMatrixUniformsForType(type,typePrefix) GenMatrixUniformSet(type,typePrefix)
 
 #define INIT_VECTOR_UNIFORM(type, typePrefix,volume)\
