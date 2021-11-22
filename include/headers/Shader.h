@@ -21,7 +21,7 @@ namespace GL
 		public:
 			Shader();
 			Shader(std::string path, GL::Shaders::ShaderType type);
-			Shader(char* text, GL::Shaders::ShaderType type);
+			Shader(GL::Shaders::ShaderType type, std::string text);
 			void MessageErrors();
 			GL::Shaders::ShaderType GetType();
 			bool IsOk();

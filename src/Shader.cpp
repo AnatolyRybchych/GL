@@ -85,13 +85,13 @@ namespace GL
 			return res;
 		}
 
-		Shader::Shader(char* text, GL::Shaders::ShaderType type)
+		Shader::Shader(GL::Shaders::ShaderType type, std::string text)
 		{
 			_type = type;
 			_id = glCreateShader(type);
 			if (HandleShaderCreateIsError(&_errors, this)) return;
 
-			char* txt = text;
+			char* txt = const_cast<char*>(text.c_str());
 			glShaderSource(_id, 1, &txt, NULL);
 			glCompileShader(_id);
 
@@ -153,7 +153,7 @@ namespace GL
 			for (auto el : GetErrors())
 			{
 				auto str = el;
-				MessageBox(0, str.c_str(), _type == GEOMETRY?"Geometry shader error":_type == FRAGMENT? "Fragment shader error":"Vertex shader error", 0);
+				MessageBoxA(0, str.c_str(), _type == GEOMETRY?"Geometry shader error":_type == FRAGMENT? "Fragment shader error":"Vertex shader error", 0);
 			}
 		}
 

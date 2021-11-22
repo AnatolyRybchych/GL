@@ -14,10 +14,8 @@ namespace GL
 
 		//draw -> drawing function
 		GlContext(HDC dc, 
-			std::function<void()> beforeDrawHandler,	//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure	
-			std::function<void()> drawHandler,			//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure	
-			std::function<void()> afterDrawingHandler,	//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure	
-			std::function<void()> initHandler,			//initialize compotents after creating context											
+			std::function<void()> initHandler,			//initialize compotents after creating context		
+			std::function<void()> drawHandler,									
 			std::function<void()> destructHandler,		//on destructor called																	
 			PIXELFORMATDESCRIPTOR* pfd = 0);
 
@@ -35,9 +33,7 @@ namespace GL
 		HDC _deviceContext;
 		HGLRC _glContext;
 
-		std::function<void()> _beforedrawHandler;
 		std::function<void()> _drawHandler;
-		std::function<void()> _afterdrawHandler;
 		std::function<void()> _destructHandler;
 
 		void MakeCurrent();

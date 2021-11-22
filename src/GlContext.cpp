@@ -4,18 +4,14 @@ namespace GL
 {
 	bool GlContext::_isGlatLoaded = false;
 
-	GlContext::GlContext(HDC dc,
-		std::function<void()> beforeDrawHandler,	//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure		,can be 0 to ignore
-		std::function<void()> drawHandler,			//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure		,can be 0 to ignore
-		std::function<void()> afterDrawingHandler,	//beforeDrawHandler() -> drawHandler() -> afterDrawingHandler()   is drawing procedure		,can be 0 to ignore
-		std::function<void()> initHandler,			//initialize compotents after creating context												,can be 0 to ignore
-		std::function<void()> destructHandler,		//on destructor called																		,can be 0 to ignore
-		PIXELFORMATDESCRIPTOR* pfd)
+	GlContext::GlContext(HDC dc, 
+			std::function<void()> initHandler,			//initialize compotents after creating context		
+			std::function<void()> drawHandler,									
+			std::function<void()> destructHandler,		//on destructor called																	
+			PIXELFORMATDESCRIPTOR* pfd)
 	{
 		_deviceContext = dc;
-		_beforedrawHandler = beforeDrawHandler;
 		_drawHandler = drawHandler;
-		_afterdrawHandler = afterDrawingHandler;
 		_destructHandler = destructHandler;
 
 		_glContext = GL::__createContext(_deviceContext, pfd);
@@ -42,12 +38,8 @@ namespace GL
 	void GlContext::Redraw()
 	{
 		MakeCurrent();
-		if(_beforedrawHandler)
-			_beforedrawHandler();
 		if(_drawHandler)
 			_drawHandler();
-		if(_afterdrawHandler)
-			_afterdrawHandler();
 		SwapBuffers(_deviceContext);
 	}
 

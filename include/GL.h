@@ -8,6 +8,5 @@
 #include "headers/ShaderProgram.h"
 #include "headers/Uniform_imp.h"
 #include "headers/UniformSampler2D.h"
-#include "headers/Compute.h"
 
 #endif

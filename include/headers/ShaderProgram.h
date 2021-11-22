@@ -25,6 +25,8 @@ namespace GL
 			GL::Shaders::Shader& GetGeometryShader();
 			void MessageErrors();
 			void Build();
+			//for compute shader program
+			void DispatchCompute(int groupsX, int groupsY, int groupsZ);
 			bool IsOk();
 			std::vector<std::string> GetErrors();
 			void Use();

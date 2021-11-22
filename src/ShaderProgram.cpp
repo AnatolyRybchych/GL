@@ -158,6 +158,11 @@ namespace GL
 			}
 		}
 
+		void ShaderProgram::DispatchCompute(int groupsX, int groupsY, int groupsZ)
+		{
+			glDispatchCompute(groupsX, groupsY, groupsZ);
+		}
+
 		vector<string> ShaderProgram::GetErrors()
 		{
 			vector<string> res = _errors;
