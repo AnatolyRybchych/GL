@@ -175,14 +175,9 @@ namespace GL
 			if (!_id) glDeleteProgram(_id);
 		}
 
-		void ShaderProgram::AddUniform(Uniform& uniform)
+		void ShaderProgram::Use()
 		{
-			_uniforms.push_back(&uniform);
-		}
-
-		void ShaderProgram::UniformAll()
-		{
-			for (auto unif : _uniforms) unif->SendToShaderProgram();
+			glUseProgram(_id);
 		}
 	}
 }

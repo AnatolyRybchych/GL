@@ -22,13 +22,15 @@ namespace GL
 		MakeCurrent();
 		if (!_isGlatLoaded) GL::__loadGlad();
 		
-		initHandler();
+		if(initHandler)
+			initHandler();
 	}
 
 	void GlContext::ChangeContextEnvironment(std::function<void()> changeProc)
 	{
 		MakeCurrent();
-		changeProc();
+		if(changeProc)
+			changeProc();
 	}
 
 	void GlContext::SetViewPort(int x, int y, int cx, int cy)
@@ -40,15 +42,19 @@ namespace GL
 	void GlContext::Redraw()
 	{
 		MakeCurrent();
-		_beforedrawHandler();
-		_drawHandler();
-		_afterdrawHandler();
+		if(_beforedrawHandler)
+			_beforedrawHandler();
+		if(_drawHandler)
+			_drawHandler();
+		if(_afterdrawHandler)
+			_afterdrawHandler();
 		SwapBuffers(_deviceContext);
 	}
 
 	GlContext::~GlContext()
 	{
-		_destructHandler();
+		if(_destructHandler)
+			_destructHandler();
 		DeleteDC(_deviceContext);
 		wglDeleteContext(_glContext);
 	}

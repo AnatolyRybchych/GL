@@ -21,17 +21,15 @@ namespace GL
 			ShaderProgram(GL::Shaders::Shader& shader1, GL::Shaders::Shader& shader2, GL::Shaders::Shader& shader3);
 			~ShaderProgram();
 			GL::Shaders::Shader& GetVertexShader();
-			GL::Shaders::Shader& GetFragmentShader();
+			GL::Shaders::Shader& GetFragmentShader(); 
 			GL::Shaders::Shader& GetGeometryShader();
 			void MessageErrors();
 			void Build();
 			bool IsOk();
 			std::vector<std::string> GetErrors();
-			void AddUniform(Uniform& uniform);
-			void UniformAll();
+			void Use();
 			GLuint GetId();
 		protected:
-			std::vector<Uniform*> _uniforms;
 			void initShader(GL::Shaders::Shader* shader);
 			bool _isVertexInit = false;
 			bool _isFragmentInit = false;

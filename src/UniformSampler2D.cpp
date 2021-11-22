@@ -4,7 +4,7 @@ namespace GL
 {
 	namespace Shaders
 	{
-		//for glsl uniform sampler2D "std::string name"; //variable to use function "vec4 texture2D(sampler2D sampler, vec2 coord)"
+		
 		UniformSampler2D::UniformSampler2D(std::string name, GLint progId,void* data, int cx, int cy, unsigned int texBlock,
 			TextureSubPixelFormat type,TexturePixelType srcFormat, TexturePixelType dstFormat) :Uniform(name, progId)
 		{
@@ -16,6 +16,11 @@ namespace GL
 		{
 			_texture->BindTextureWithBlock(_textBlock);
 			glUniform1i(_uniformLocation, _textBlock);
+		}
+
+		Texture2D* UniformSampler2D::GetTexture()
+		{
+			return _texture;
 		}
 
 		void UniformSampler2D::SetValue(void* data, int cx, int cy)

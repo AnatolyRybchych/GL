@@ -15,6 +15,7 @@ namespace GL
 	{
 		std::string ReadAllTextFromFile(std::string path);
 
+		//#version 450
 		class Shader
 		{
 		public:

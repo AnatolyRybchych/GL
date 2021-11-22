@@ -2,8 +2,8 @@
 CC = g++
 out = ./static/GL.o
 additionalLibs = -lopengl32 -lgdi32 
-linkArgs = -shared
-compileArgs = -c 
+linkArgs = -shared -g
+compileArgs = -c -g
 OBJDIR = ./objects/
 SRC_TYPE= '\.cpp'
 
